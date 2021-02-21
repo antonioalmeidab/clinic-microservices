@@ -14,6 +14,6 @@ module.exports = {
 
     patientData.diseaseHistory = diseaseData;
 
-    console.log(patientData);
+    return patientData;
   },
 };

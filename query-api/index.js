@@ -9,9 +9,7 @@ app.use(bodyParser.json());
 app.get("/patients", (req, res) => {
   const cpf = req.query.cpf;
 
-  controller.fetchPatientRecord(cpf);
-
-  // res.json(patientsDiseasesRecord.fetchPatientDiseaseRecord(cpf));
+  res.json(controller.fetchPatientRecord(cpf));
 });
 
 app.listen(port);
