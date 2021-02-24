@@ -7,8 +7,21 @@ const port = 3000;
 app.use(bodyParser.json());
 
 app.post("/", (req, res) => {
-  patientsRecord.insertPatient(req.body);
-  res.status(200).send(`Patient ${req.body.name} registered`);
+  try {
+    const patientData = {
+      name: req.body.name,
+      cpf: req.body.cpf,
+      age: req.body.age,
+      address: req.body.address,
+      treatmentType: req.body.treatmentType
+    };
+
+    patientsRecord.insertPatient(patientData);
+
+    res.status(200).send(`Patient ${patientData.name} registered`);
+  } catch {
+    res.status(400).send("Missing patient data");
+  }
 });
 
 app.get("/", (req, res) => {
