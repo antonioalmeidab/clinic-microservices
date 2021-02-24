@@ -6,12 +6,12 @@ const port = 3000;
 
 app.use(bodyParser.json());
 
-app.post("/patients", (req, res) => {
+app.post("/", (req, res) => {
   patientsRecord.insertPatient(req.body);
   res.status(200).send(`Patient ${req.body.name} registered`);
 });
 
-app.get("/patients", (req, res) => {
+app.get("/", (req, res) => {
   res.json(patientsRecord.fetchPatient(req.query.cpf));
 });
 

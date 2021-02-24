@@ -6,7 +6,7 @@ const port = 4000;
 
 app.use(bodyParser.json());
 
-app.post("/patients/diseases", (req, res) => {
+app.post("/", (req, res) => {
   const cpf = req.body.cpf;
   const disease = req.body.disease;
 
@@ -20,7 +20,7 @@ app.post("/patients/diseases", (req, res) => {
   );
 });
 
-app.get("/patients/diseases", (req, res) => {
+app.get("/", (req, res) => {
   const cpf = req.query.cpf;
 
   res.json(patientsDiseasesRecord.fetchPatientDiseaseRecord(cpf));

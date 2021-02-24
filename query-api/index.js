@@ -6,10 +6,12 @@ const port = 5000;
 
 app.use(bodyParser.json());
 
-app.get("/patients", (req, res) => {
+app.get("/", async (req, res) => {
   const cpf = req.query.cpf;
 
-  res.json(controller.fetchPatientRecord(cpf));
+  const patientRecord = await controller.fetchPatientRecord(cpf);
+
+  res.json(patientRecord);
 });
 
 app.listen(port);
