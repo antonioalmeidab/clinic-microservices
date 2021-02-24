@@ -7,17 +7,21 @@ const port = 4000;
 app.use(bodyParser.json());
 
 app.post("/", (req, res) => {
-  const cpf = req.body.cpf;
-  const disease = req.body.disease;
-
-  const diseaseRecord = patientsDiseasesRecord.insertPatientDisease(
-    cpf,
-    disease
-  );
-
-  res.send(
-    `Disease ${diseaseRecord.disease} registered at ${diseaseRecord.registerTime}. Patient  ${cpf}`
-  );
+  try{
+    const cpf = req.body.cpf;
+    const disease = req.body.disease;
+  
+    const diseaseRecord = patientsDiseasesRecord.insertPatientDisease(
+      cpf,
+      disease
+    );
+  
+    res.send(
+      `Disease ${diseaseRecord.disease} registered at ${diseaseRecord.registerTime}. Patient  ${cpf}`
+    );
+  } catch {
+    res.send("Missing disease data");
+  }
 });
 
 app.get("/", (req, res) => {
